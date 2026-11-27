@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> _editBike() async {
     final name=TextEditingController(text:_bike), model=TextEditingController(text:_model), odo=TextEditingController(text:_odometer.toString()), interval=TextEditingController(text:_interval.toString());
     final ok=await showDialog<bool>(context:context,builder:(ctx)=>AlertDialog(title:const Text('Motorcycle profile'),content:SingleChildScrollView(child:Column(mainAxisSize:MainAxisSize.min,children:[_field(name,'Motorcycle name'),_field(model,'Brand / model'),_field(odo,'Current mileage (km)',number:true),_field(interval,'Oil change interval (km)',number:true)])),actions:[TextButton(onPressed:()=>Navigator.pop(ctx,false),child:const Text('Cancel')),FilledButton(onPressed:()=>Navigator.pop(ctx,true),child:const Text('Save'))]));
-    if(ok==true){setState(()=>{_bike=name.text.trim().isEmpty?'My Motorcycle':name.text.trim(),_model=model.text.trim(),_odometer=int.tryParse(odo.text)??_odometer,_interval=(int.tryParse(interval.text)??_interval).clamp(500,10000)});await _save();}
+    if(ok==true){setState(() {_bike=name.text.trim().isEmpty?'My Motorcycle':name.text.trim();_model=model.text.trim();_odometer=int.tryParse(odo.text)??_odometer;_interval=(int.tryParse(interval.text)??_interval).clamp(500,10000);});await _save();}
   }
   Widget _field(TextEditingController c,String label,{bool number=false})=>Padding(padding:const EdgeInsets.only(bottom:10),child:TextField(controller:c,keyboardType:number?TextInputType.number:TextInputType.text,decoration:InputDecoration(labelText:label,border:const OutlineInputBorder())));
 
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
     final p=double.tryParse(parts.text)??0, l=double.tryParse(labor.text)??0;
     final total=kind==RecordKind.oil?(double.tryParse(cost.text)??0):p+l;
     final record=MaintenanceRecord(id:existing?.id??DateTime.now().microsecondsSinceEpoch.toString(),kind:kind,date:date,mileage:int.tryParse(mileage.text)??_odometer,title:title.text.trim().isEmpty?(kind==RecordKind.oil?'Oil change':'Repair'):title.text.trim(),details:details.text.trim(),cost:total,partsCost:p,laborCost:l);
-    setState(()=>{_records.removeWhere((r)=>r.id==record.id),_records.add(record)});
+    setState(() {_records.removeWhere((r)=>r.id==record.id);_records.add(record);});
     await _save();
   }
   Future<void> _deleteRecord(MaintenanceRecord r) async {
