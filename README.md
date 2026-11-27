@@ -29,18 +29,18 @@ MotoCare is a Flutter mobile app for motorcycle owners to record oil changes and
 ## Setup
 Clone this repository, then generate the standard Flutter platform folders:
 
-\`\`\`bash
+~~~bash
 git clone https://github.com/erikadacula17-glitch/Vehicle-Maintenance-Log.git
 cd Vehicle-Maintenance-Log
 flutter create --platforms=android,web .
 flutter pub get
 flutter run
-\`\`\`
+~~~
 
 ## Build an Android APK
-\`\`\`bash
+~~~bash
 flutter build apk --release
-\`\`\`
+~~~
 The APK will be at \`build/app/outputs/flutter-apk/app-release.apk\`.
 
 ## Data and privacy

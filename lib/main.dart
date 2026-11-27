@@ -70,7 +70,6 @@ class _HomePageState extends State<HomePage> {
     await p.setInt('odometer',_odometer); await p.setInt('interval',_interval);
   }
   double get _total => _records.fold(0,(s,r)=>s+r.cost);
-  int get _oilCount => _records.where((r)=>r.kind==RecordKind.oil).length;
   int? get _lastOilMileage {
     final oils=_records.where((r)=>r.kind==RecordKind.oil).toList()..sort((a,b)=>b.date.compareTo(a.date));
     return oils.isEmpty ? null : oils.first.mileage;
@@ -100,7 +99,7 @@ class _HomePageState extends State<HomePage> {
     Row(children:[Expanded(child:_stat('Total spent',_currency.format(_total),Icons.payments_outlined)),const SizedBox(width:12),Expanded(child:_stat('Records',_records.length.toString(),Icons.receipt_long_outlined))]),
     const SizedBox(height:18),
     Container(padding:const EdgeInsets.all(18),decoration:BoxDecoration(color:const Color(0xFF1B1F25),borderRadius:BorderRadius.circular(18),border:Border.all(color:Colors.white10)),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[
-      Row(children:[const Icon(Icons.oil_barrel_outlined,color:Color(0xFFEF8A50)),const SizedBox(width:8),const Expanded(child:Text('NEXT OIL CHANGE',style:TextStyle(fontWeight:FontWeight.w800,letterSpacing:.7))),Text(_remaining<=0?'DUE NOW':'IN '+NumberFormat('#,##0').format(_remaining)+' KM',style:TextStyle(color:_remaining<=0?Colors.orangeAccent:const Color(0xFF8BD6A6),fontWeight:FontWeight.bold,fontSize:11))]),
+      Row(children:[const Icon(Icons.oil_barrel,color:Color(0xFFEF8A50)),const SizedBox(width:8),const Expanded(child:Text('NEXT OIL CHANGE',style:TextStyle(fontWeight:FontWeight.w800,letterSpacing:.7))),Text(_remaining<=0?'DUE NOW':'IN '+NumberFormat('#,##0').format(_remaining)+' KM',style:TextStyle(color:_remaining<=0?Colors.orangeAccent:const Color(0xFF8BD6A6),fontWeight:FontWeight.bold,fontSize:11))]),
       const SizedBox(height:12),Text(NumberFormat('#,##0').format(_nextOil)+' km',style:const TextStyle(fontSize:28,fontWeight:FontWeight.bold)),
       const SizedBox(height:10),ClipRRect(borderRadius:BorderRadius.circular(20),child:LinearProgressIndicator(value:(_odometer/(_nextOil==0?1:_nextOil)).clamp(0.0,1.0),minHeight:8,backgroundColor:Colors.white12,color:const Color(0xFFEF7A3D))),
       const SizedBox(height:8),Text('Oil change interval: '+NumberFormat('#,##0').format(_interval)+' km',style:const TextStyle(color:Colors.white54,fontSize:12))
