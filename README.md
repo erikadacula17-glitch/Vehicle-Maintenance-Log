@@ -1,9 +1,9 @@
-# MotoCare — Motorcycle Maintenance Log
+# RideCare — Motorcycle Maintenance Log
 
 **Student:** Erika D. Dacula  
 **Section:** BSINTE-2A
 
-MotoCare is a Flutter mobile app for motorcycle owners to record oil changes and repairs, track mileage and costs, and see when the next oil service is due. All data is stored locally on the device. **No Supabase is used.**
+RideCare is a Flutter mobile app for motorcycle owners to record oil changes and repairs, track mileage and costs, and see when the next oil service is due. All data is stored locally on the device. **No Supabase is used.**
 
 ## Features
 - Motorcycle profile: name, brand/model, current odometer, and oil interval

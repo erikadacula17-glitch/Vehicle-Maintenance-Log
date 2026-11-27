@@ -15,11 +15,11 @@ jobs:
         with:
           channel: stable
       - name: Generate Flutter platform folders
-        run: flutter create --platforms=android,web --project-name motocare .
+        run: flutter create --platforms=android,web --project-name ridecare .
       - name: Install packages
         run: flutter pub get
       - name: Analyze
-        run: flutter analyze --no-fatal-infos
+        run: flutter analyze --no-fatal-infos --no-fatal-infos
       - name: Run tests
         run: flutter test
       - name: Build Android APK

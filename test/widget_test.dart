@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:motocare/main.dart';
+import 'package:ridecare/main.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -9,10 +9,10 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('MotoCare opens the dashboard', (tester) async {
-    await tester.pumpWidget(const MotoCareApp());
+  testWidgets('RideCare opens the dashboard', (tester) async {
+    await tester.pumpWidget(const RideCareApp());
     await tester.pumpAndSettle();
-    expect(find.text('MotoCare'), findsOneWidget);
+    expect(find.text('RideCare'), findsOneWidget);
     expect(find.text('YOUR RIDE, WELL MAINTAINED'), findsOneWidget);
     expect(find.text('NEXT OIL CHANGE'), findsOneWidget);
   });

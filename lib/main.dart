@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
-void main() => runApp(const MotoCareApp());
+void main() => runApp(const RideCareApp());
 
-class MotoCareApp extends StatelessWidget {
-  const MotoCareApp({super.key});
+class RideCareApp extends StatelessWidget {
+  const RideCareApp({super.key});
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'MotoCare',
+    title: 'RideCare',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFEF6C35), brightness: Brightness.dark), useMaterial3: true, scaffoldBackgroundColor: const Color(0xFF101216), cardTheme: const CardThemeData(color: Color(0xFF1B1F25), elevation: 0)),
     home: const HomePage(),
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (_loading) return const Scaffold(body:Center(child:CircularProgressIndicator()));
     return Scaffold(
-      appBar: AppBar(title: const Row(children:[Icon(Icons.two_wheeler,color:Color(0xFFEF6C35)),SizedBox(width:9),Text('MotoCare',style:TextStyle(fontWeight:FontWeight.w800,letterSpacing:.4))]),actions:[IconButton(tooltip:'Motorcycle settings',onPressed:_editBike,icon:const Icon(Icons.settings_outlined))]),
+      appBar: AppBar(title: const Row(children:[Icon(Icons.two_wheeler,color:Color(0xFFEF6C35)),SizedBox(width:9),Text('RideCare',style:TextStyle(fontWeight:FontWeight.w800,letterSpacing:.4))]),actions:[IconButton(tooltip:'Motorcycle settings',onPressed:_editBike,icon:const Icon(Icons.settings_outlined))]),
       body: SafeArea(child: IndexedStack(index:_tab,children:[_dashboard(),_history()])),
       floatingActionButton: FloatingActionButton.extended(onPressed:()=>_showRecordDialog(),icon:const Icon(Icons.add),label:const Text('Add record')),
       bottomNavigationBar: NavigationBar(selectedIndex:_tab,onDestinationSelected:(v)=>setState(()=>_tab=v),destinations:const [NavigationDestination(icon:Icon(Icons.dashboard_outlined),selectedIcon:Icon(Icons.dashboard),label:'Overview'),NavigationDestination(icon:Icon(Icons.history),label:'History')]),
